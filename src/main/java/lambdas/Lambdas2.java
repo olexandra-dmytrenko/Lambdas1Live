@@ -49,10 +49,13 @@ public class Lambdas2 {
     }
 
     private static Stream<Integer> getIntegerStream(List<Integer> numbers) {
+        Function<Integer, Predicate<Integer>> comareNumbers = toCompare -> curNumber -> curNumber > toCompare;
+        int toCompare = 6;
         return numbers.stream()
 //                .filter(isGreaterThan3())
 //                .filter(Lambdas2::isGreaterThan3)
-                .filter(number -> isGreaterThan3(number))
+//                .filter(number -> isGreaterThan3(number))
+                .filter(comareNumbers.apply(toCompare))
                 .filter(isEven())
                 .map(Lambdas2::getDoubled);
     }
